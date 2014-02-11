@@ -3,6 +3,8 @@ ZenKEY
 
 Home the ZenKEY, the Windows hotkey utility featuring window managment, auto-transparency, and infinite desktop and more.
 
+Website: http://zenkey.sourceforge.net
+
 ZenKEY allows you to control almost all aspects of your computer via the keyboard and mouse.
 Using a Desktop map and keystrokes that work no matter what program you are in, you can:
 
@@ -28,3 +30,4 @@ Using a Desktop map and keystrokes that work no matter what program you are in, 
 
 Using the ZenKEY configuration utility, you can add any program, add or alter any menu,
 and assign any keystroke to perform any action
+
