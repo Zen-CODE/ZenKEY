@@ -1,0 +1,43 @@
+Type=Exe
+Reference=*\G{00020430-0000-0000-C000-000000000046}#2.0#0#C:\WINDOWS\system32\stdole2.tlb#OLE Automation
+Module=modZenKP; Modules\modZenKP.bas
+Class=clsRegistry; Classes\clsRegistry.cls
+Startup="Sub Main"
+HelpFile=""
+Title="ZenKey"s"
+ExeName32="ZenKP.exe"
+Path32="Z:\My Documents\ZenCODE\ZenKEY\ZenKEY"
+Command32="|MenuHandle=35783417|MenuID=1003|Caption=Control break|Class=KEYSTROKES|ShiftKey=Ctrl|Hotkey=186|Action=4>88>4>91>4>92>5>91>3>|"
+Name="ZenKP"
+HelpContextID="0"
+Description="ZenKEY Keystroke Emulator"
+CompatibleMode="0"
+MajorVer=2
+MinorVer=3
+RevisionVer=0
+AutoIncrementVer=0
+ServerSupportFiles=0
+VersionComments="ZenKEY Keystroke Emulator"
+VersionCompanyName="ZenCODE"
+VersionFileDescription="ZenKEY Keystroke Emulator"
+VersionLegalCopyright="ZenCODE"
+VersionLegalTrademarks="ZenCODE"
+VersionProductName="ZenKEY Keystroke Emulator"
+CompilationType=0
+OptimizationType=0
+FavorPentiumPro(tm)=0
+CodeViewDebugInfo=0
+NoAliasing=0
+BoundsCheck=0
+OverflowCheck=0
+FlPointCheck=0
+FDIVCheck=0
+UnroundedFP=0
+StartMode=0
+Unattended=0
+Retained=0
+ThreadPerObject=0
+MaxNumberOfThreads=1
+
+[MS Transaction Server]
+AutoRefresh=1
