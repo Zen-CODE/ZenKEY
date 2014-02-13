@@ -14,8 +14,6 @@ Attribute VB_Exposed = False
 Option Explicit
 Option Compare Text
 
-
-
 Public Sub DoAction(ByRef prop As clsZenDictionary)
 Dim strFile As String, strParam As String
 
@@ -35,10 +33,6 @@ Dim strFile As String, strParam As String
     Call ShellExe(strFile, strParam, , GetStartDir(strFile, prop("ChangeDir")))
         
 End Sub
-
-
-
-
 
 Private Function GetStartDir(Optional ByVal strFile As String = vbNullString, Optional ByVal ChangeDir As String = vbNullString) As String
 Dim strNewDir As String
@@ -67,6 +61,4 @@ On Error Resume Next
         End If
     End If
     
-    
-
 End Function
