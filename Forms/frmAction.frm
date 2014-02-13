@@ -94,9 +94,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":058A
+      ItemData        =   "frmAction.frx":0D0F
       Left            =   1080
-      List            =   "frmAction.frx":0597
+      List            =   "frmAction.frx":0D1C
       Style           =   2  'Dropdown List
       TabIndex        =   17
       ToolTipText     =   "Describes the type of action to be performed"
@@ -176,7 +176,7 @@ Begin VB.Form frmAction
       Height          =   240
       Left            =   2475
       TabIndex        =   4
-      ToolTipText     =   $"frmAction.frx":05DE
+      ToolTipText     =   $"frmAction.frx":0D63
       Top             =   1200
       Width           =   2475
    End
@@ -256,9 +256,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":066F
+      ItemData        =   "frmAction.frx":0DF4
       Left            =   2640
-      List            =   "frmAction.frx":0676
+      List            =   "frmAction.frx":0DFB
       Style           =   2  'Dropdown List
       TabIndex        =   6
       ToolTipText     =   "Select the special folder to be opened."
@@ -311,9 +311,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0686
+      ItemData        =   "frmAction.frx":0E0B
       Left            =   1440
-      List            =   "frmAction.frx":068D
+      List            =   "frmAction.frx":0E12
       Style           =   2  'Dropdown List
       TabIndex        =   8
       ToolTipText     =   "Select the action to be taken"
@@ -621,9 +621,7 @@ Dim k As Long, max As Long
             End If
         End With
         Call Form_SetMode(prop)
-        
     End If
-
 
 End Sub
 
@@ -1591,6 +1589,13 @@ Static LineHeightBig As Single
             cmbActItem.ToolTipText = "Open a 'Windows defined' folder e.g. The desktop folder"
             lblFile.Caption = "Folder"
             lblFile.Visible = True
+        Case "SystemFolder"
+            Call Form_SetSize(1)
+            lblSpecial.Caption = "System folder"
+            cmbActItem.Visible = True
+            cmbActItem.ToolTipText = "Open a 'Windows System Folder e.g. The Recyclce bin"
+            lblFile.Caption = "Folder"
+            lblFile.Visible = True
         Case "KeyStrokes"
             Call Form_SetSize(1)
             lblFile.Caption = "Press these keys :"
@@ -1629,6 +1634,21 @@ Dim strTemp As String
 
 End Sub
 
+Private Sub SpecialFolder_Init()
+
+Dim k As Integer
+Dim strTemp As String
+
+    With cmbActItem
+        .Clear
+        For k = 1 To 255
+            strTemp = InsertSpecialFolder("%" & CStr(k) & "%")
+            If Len(strTemp) > 0 Then .AddItem FBR_GetLastFolder(strTemp) & " (" & CStr(k) & ")"
+        Next k
+        .ListIndex = 0
+    End With
+
+End Sub
 Private Sub HK_SetCombo(ByRef prop As clsZenDictionary)
         
     If Len(prop("ShiftKey")) <> 0 Then
