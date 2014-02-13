@@ -94,9 +94,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0D0F
+      ItemData        =   "frmAction.frx":0E22
       Left            =   1080
-      List            =   "frmAction.frx":0D1C
+      List            =   "frmAction.frx":0E2F
       Style           =   2  'Dropdown List
       TabIndex        =   17
       ToolTipText     =   "Describes the type of action to be performed"
@@ -176,7 +176,7 @@ Begin VB.Form frmAction
       Height          =   240
       Left            =   2475
       TabIndex        =   4
-      ToolTipText     =   $"frmAction.frx":0D63
+      ToolTipText     =   $"frmAction.frx":0E76
       Top             =   1200
       Width           =   2475
    End
@@ -256,9 +256,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0DF4
+      ItemData        =   "frmAction.frx":0F07
       Left            =   2640
-      List            =   "frmAction.frx":0DFB
+      List            =   "frmAction.frx":0F0E
       Style           =   2  'Dropdown List
       TabIndex        =   6
       ToolTipText     =   "Select the special folder to be opened."
@@ -311,9 +311,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0E0B
+      ItemData        =   "frmAction.frx":0F1E
       Left            =   1440
-      List            =   "frmAction.frx":0E12
+      List            =   "frmAction.frx":0F25
       Style           =   2  'Dropdown List
       TabIndex        =   8
       ToolTipText     =   "Select the action to be taken"
@@ -1634,21 +1634,6 @@ Dim strTemp As String
 
 End Sub
 
-Private Sub SpecialFolder_Init()
-
-Dim k As Integer
-Dim strTemp As String
-
-    With cmbActItem
-        .Clear
-        For k = 1 To 255
-            strTemp = InsertSpecialFolder("%" & CStr(k) & "%")
-            If Len(strTemp) > 0 Then .AddItem FBR_GetLastFolder(strTemp) & " (" & CStr(k) & ")"
-        Next k
-        .ListIndex = 0
-    End With
-
-End Sub
 Private Sub HK_SetCombo(ByRef prop As clsZenDictionary)
         
     If Len(prop("ShiftKey")) <> 0 Then
