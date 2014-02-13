@@ -201,11 +201,11 @@ Dim Action As String
                             Select Case Action
                                 Case "TILEL4"
                                     For lngHWnd = 0 To 3
-                                        Call ResizeWin("|Action=" & Choose(lngHWnd + 1, "TOPLEFT", "TOPRIGHT", "BOTTOMLEFT", "BOTTOMRIGHT"), ActiveWindow(lngHWnd) & "|")
+                                        Call ResizeWin(zenDic("Action", Choose(lngHWnd + 1, "TOPLEFT", "TOPRIGHT", "BOTTOMLEFT", "BOTTOMRIGHT")), ActiveWindow(lngHWnd))
                                     Next lngHWnd
                                 Case "TILEL4NR"
                                     For lngHWnd = 0 To 3
-                                        Call ResizeWin("|Action=" & Choose(lngHWnd + 1, "CENTERTOPLEFT", "CENTERTOPRIGHT", "CENTERBOTLEFT", "CENTERBOTRIGHT"), ActiveWindow(lngHWnd) & "|")
+                                        Call ResizeWin(zenDic("Action", Choose(lngHWnd + 1, "CENTERTOPLEFT", "CENTERTOPRIGHT", "CENTERBOTLEFT", "CENTERBOTRIGHT")), ActiveWindow(lngHWnd))
                                     Next lngHWnd
                             End Select
                         End If
@@ -529,15 +529,15 @@ Private Sub ShowInfo(ByVal hwnd As Long)
 Rem - Display information about the selected window
 
     'Call ZenMB("Info for " & CStr(hwnd))
-    Dim k As Long, msg As String
+    Dim k As Long, Msg As String
     Dim strExe As String, strClass As String
     
     For k = 0 To 15
         strExe = GetExeFromHandle(ActiveWindow(k))
         strClass = ClassName(ActiveWindow(k))
-        msg = msg & CStr(k) & ". " & strExe & " (" & CStr(ActiveWindow(k)) & "), " & strClass & vbCrLf
+        Msg = Msg & CStr(k) & ". " & strExe & " (" & CStr(ActiveWindow(k)) & "), " & strClass & vbCrLf
     Next k
-    Call ZenMB(msg)
+    Call ZenMB(Msg)
 
 End Sub
 
