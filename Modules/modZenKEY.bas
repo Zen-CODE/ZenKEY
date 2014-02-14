@@ -25,6 +25,7 @@ Public Sub Main()
 '|Class=SYSTEM|Action=CTRMOUSE|Caption=Center the mouse|Hotkey=36|ShiftKey=Ctrl|
 '|Class=SYSTEM|Action=CTRMOUSEACTIVE|Caption=Center the mouse on the active control|Hotkey=35|ShiftKey=Ctrl|
 '|Class=KEYSTROKES|Action=16>-5000>1>-5000>5>90>2>92>0>141>6>142>7>94>5>96>1>-5000>3>-5000>7>98>0>100>0>153>0>154>3>103>1>103>5>|Caption=Delayed startup|
+'|Caption=Open Control Panel|Action=,::{20D04FE0-3AEA-1069-A2D8-08002B30309D}\::{21EC2020-3AEA-1069-A2DD-08002B30309D}|Class=SystemFolder|
 
     Rem - GetDesktopWindow SystemParametersInfo(SPI_GETWORKAREA...) only work for 1 screen, not for multiple
     DTP_Handle = FindWindow("PROGMAN", vbNullString)
@@ -111,7 +112,7 @@ Static cKeyStrokes As clsKeyStroke
         Case "MEDIA"
             If cMedia Is Nothing Then Set cMedia = New clsMedia
             Set ZK_GetObject = cMedia
-        Case "FOLDER", "SPECIALFOLDER"
+        Case "FOLDER", "SPECIALFOLDER", "SYSTEMFOLDER"
             If cFolder Is Nothing Then Set cFolder = New clsFolder
             Set ZK_GetObject = cFolder
         Case "SYSTEM"
