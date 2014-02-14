@@ -94,9 +94,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0E22
+      ItemData        =   "frmAction.frx":0F35
       Left            =   1080
-      List            =   "frmAction.frx":0E2F
+      List            =   "frmAction.frx":0F42
       Style           =   2  'Dropdown List
       TabIndex        =   17
       ToolTipText     =   "Describes the type of action to be performed"
@@ -176,7 +176,7 @@ Begin VB.Form frmAction
       Height          =   240
       Left            =   2475
       TabIndex        =   4
-      ToolTipText     =   $"frmAction.frx":0E76
+      ToolTipText     =   $"frmAction.frx":0F89
       Top             =   1200
       Width           =   2475
    End
@@ -256,9 +256,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0F07
+      ItemData        =   "frmAction.frx":101A
       Left            =   2640
-      List            =   "frmAction.frx":0F0E
+      List            =   "frmAction.frx":1021
       Style           =   2  'Dropdown List
       TabIndex        =   6
       ToolTipText     =   "Select the special folder to be opened."
@@ -311,9 +311,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0F1E
+      ItemData        =   "frmAction.frx":1031
       Left            =   1440
-      List            =   "frmAction.frx":0F25
+      List            =   "frmAction.frx":1038
       Style           =   2  'Dropdown List
       TabIndex        =   8
       ToolTipText     =   "Select the action to be taken"
@@ -1163,7 +1163,7 @@ On Error GoTo ErrorTrap
             actDict("Param") = "shell32.dll,Control_RunDLL " & txtFile.Text
             actDict("Class") = "File"
             
-        Case "SYSTEM", "Winamp", "Windows", "ZenKEY"
+        Case "SYSTEM", "Winamp", "Windows", "ZenKEY", "SystemFolder"
             Rem - Check that they have not changed the caption
             If Prop_Get("Action", Actions(cmbAction.ListIndex).Action(cmbActItem.ListIndex + 1)) = "PREVENTSAVER" Then Call ZenMB("Please note that the caption of this item is determined by ZenKEY of the fly, and not by what you see here..", "OK")
         Case "Media"
