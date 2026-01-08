@@ -46,24 +46,6 @@ Public WIN_ZKAction As Long ' For passing messages to active instance
 Public Declare Function InitCommonControls Lib "Comctl32.dll" () As Long ' For XP theming
 Public COL_Zen As OLE_COLOR
 
-Public Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
-Rem - Pumps the pipe separated items into Items()
-Dim k As Integer, intEnd As Integer
-
-    intEnd = InStr(Sentance, Separator)
-    For k = 0 To AfterNthSep - 1
-        If intEnd > 0 Then
-            Sentance = Mid$(Sentance, intEnd + 1)
-        Else
-            Sentance = vbNullString
-        End If
-        intEnd = InStr(Sentance, Separator)
-    Next k
-    intEnd = InStr(Sentance, Separator)
-    If intEnd > 0 Then Extract = left$(Sentance, intEnd - 1) Else Extract = Sentance
-
-
-End Function
 Public Sub TileMe(ByRef DaForm As Form, ByRef Pic As StdPicture)
 Dim sngWidth As Single, sngHeight As Single
 Dim k As Single, i As Single

@@ -20,6 +20,7 @@ Public Const ZK_TransWarn = "Before this setting is enabled, there are a few thi
 "3. If you would like to prevent these or any other windows from being affected, please add them to the 'Excluded applications' list." & vbCr & _
 "4. There are various options available in the ZenKEY Configuration Utility if you experience other display anomalies."
 
+
 Public Sub ZK_Restart()
 Const WM_CLOSE = &H10
 Dim lngHandle As Long
@@ -42,6 +43,23 @@ Dim booLoop As Boolean
     Call Shell(App.Path & "\ZenKEY.exe RESTART", vbNormalFocus)
 
 End Sub
+Private Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
+Rem - Pumps the pipe separated items into Items()
+Dim k As Integer, intEnd As Integer
+
+    intEnd = InStr(Sentance, Separator)
+    For k = 0 To AfterNthSep - 1
+        If intEnd > 0 Then
+            Sentance = Mid$(Sentance, intEnd + 1)
+        Else
+            Sentance = vbNullString
+        End If
+        intEnd = InStr(Sentance, Separator)
+    Next k
+    intEnd = InStr(Sentance, Separator)
+    If intEnd > 0 Then Extract = left$(Sentance, intEnd - 1) Else Extract = Sentance
+
+End Function
 Public Function KS_GetDescription(ByVal KeySequence As String) As String
 Dim KeyCount As Long
 Dim k As Long

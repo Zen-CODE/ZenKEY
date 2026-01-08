@@ -58,7 +58,23 @@ Dim lngMax As Long
     
 End Function
 
+Private Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
+Rem - Pumps the pipe separated items into Items()
+Dim k As Integer, intEnd As Integer
 
+    intEnd = InStr(Sentance, Separator)
+    For k = 0 To AfterNthSep - 1
+        If intEnd > 0 Then
+            Sentance = Mid$(Sentance, intEnd + 1)
+        Else
+            Sentance = vbNullString
+        End If
+        intEnd = InStr(Sentance, Separator)
+    Next k
+    intEnd = InStr(Sentance, Separator)
+    If intEnd > 0 Then Extract = left$(Sentance, intEnd - 1) Else Extract = Sentance
+
+End Function
 Public Function FBR_GetOFName(ByVal Caption As String, ByRef FName As String, ParamArray FileType()) As Boolean
 Dim OFName As OPENFILENAME
 

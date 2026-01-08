@@ -14,7 +14,26 @@ Private Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hw
 Public ZW_NewItem As New clsZenDictionary
 Public GroupList() As String ' The list of New groups names in thre "New configuration" option
 Public ZW_Settings As String
+Public Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
+Rem - Pumps the pipe separated items into Items()
+Dim k As Integer, intEnd As Integer
+
+    intEnd = InStr(Sentance, Separator)
+    For k = 0 To AfterNthSep - 1
+        If intEnd > 0 Then
+            Sentance = Mid$(Sentance, intEnd + 1)
+        Else
+            Sentance = vbNullString
+        End If
+        intEnd = InStr(Sentance, Separator)
+    Next k
+    intEnd = InStr(Sentance, Separator)
+    If intEnd > 0 Then Extract = left$(Sentance, intEnd - 1) Else Extract = Sentance
+
+End Function
+
 Private Function ZW_EditItem() As Boolean
+
 Dim ActForm As frmAction
     
     Set ActForm = New frmAction

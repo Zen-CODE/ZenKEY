@@ -94,9 +94,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":0F35
+      ItemData        =   "frmAction.frx":058A
       Left            =   1080
-      List            =   "frmAction.frx":0F42
+      List            =   "frmAction.frx":0597
       Style           =   2  'Dropdown List
       TabIndex        =   17
       ToolTipText     =   "Describes the type of action to be performed"
@@ -176,7 +176,7 @@ Begin VB.Form frmAction
       Height          =   240
       Left            =   2475
       TabIndex        =   4
-      ToolTipText     =   $"frmAction.frx":0F89
+      ToolTipText     =   $"frmAction.frx":05DE
       Top             =   1200
       Width           =   2475
    End
@@ -256,9 +256,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":101A
+      ItemData        =   "frmAction.frx":066F
       Left            =   2640
-      List            =   "frmAction.frx":1021
+      List            =   "frmAction.frx":0676
       Style           =   2  'Dropdown List
       TabIndex        =   6
       ToolTipText     =   "Select the special folder to be opened."
@@ -311,9 +311,9 @@ Begin VB.Form frmAction
          Strikethrough   =   0   'False
       EndProperty
       Height          =   360
-      ItemData        =   "frmAction.frx":1031
+      ItemData        =   "frmAction.frx":0686
       Left            =   1440
-      List            =   "frmAction.frx":1038
+      List            =   "frmAction.frx":068D
       Style           =   2  'Dropdown List
       TabIndex        =   8
       ToolTipText     =   "Select the action to be taken"
@@ -660,6 +660,23 @@ End Sub
 Private Sub cmbShift_Change()
     booDupeKeyWarning = False
 End Sub
+Private Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
+Rem - Pumps the pipe separated items into Items()
+Dim k As Integer, intEnd As Integer
+
+    intEnd = InStr(Sentance, Separator)
+    For k = 0 To AfterNthSep - 1
+        If intEnd > 0 Then
+            Sentance = Mid$(Sentance, intEnd + 1)
+        Else
+            Sentance = vbNullString
+        End If
+        intEnd = InStr(Sentance, Separator)
+    Next k
+    intEnd = InStr(Sentance, Separator)
+    If intEnd > 0 Then Extract = left$(Sentance, intEnd - 1) Else Extract = Sentance
+
+End Function
 
 Private Sub cmbSpecial_Click()
 Dim k As Long

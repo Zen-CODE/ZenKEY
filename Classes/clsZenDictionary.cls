@@ -31,18 +31,18 @@ Rem - A ini file comprises lines of two string separated by an equals sign. The 
     
 End Function
 
-Public Property Get Item(ByRef Key As String) As String
+Public Property Get Item(ByRef key As String) As String
 Attribute Item.VB_UserMemId = 0
-    Item = dic(Key) ' Will return null string by default
+    Item = dic(key) ' Will return null string by default
 End Property
 
-Public Property Let Item(ByRef Key As String, ByVal Value As String)
+Public Property Let Item(ByRef key As String, ByVal Value As String)
 ' Use the second param ByVal to assist implicit string conversion
 
     If Len(Value) = 0 Then
-        If dic.Exists(Key) Then Call dic.Remove(Key)
+        If dic.Exists(key) Then Call dic.Remove(key)
     Else
-        If dic.Exists(Key) Then dic(Key) = Value Else Call dic.Add(Key, Value)
+        If dic.Exists(key) Then dic(key) = Value Else Call dic.Add(key, Value)
     End If
     
 End Property
@@ -69,7 +69,7 @@ Dim items() As String, intPos As Integer
     For k = UBound(items) To 0 Step -1 ' Split using pipes
         intPos = InStr(items(k), "=")
         If intPos > 0 Then 'Has a key/value pair
-            Me(Left(items(k), intPos - 1)) = Mid(items(k), intPos + 1) ' Use the zen Item prop to handle removal
+            Me(left(items(k), intPos - 1)) = Mid(items(k), intPos + 1) ' Use the zen Item prop to handle removal
         End If
     Next k
 
@@ -110,7 +110,7 @@ Public Function Count() As Long
 End Function
 
 Private Sub Class_Initialize()
-    Set dic = New_c.SortedDictionary
+    Set dic = New clsZenDictionary
     dic.StringCompareMode = TextCompare
 End Sub
 

@@ -25,6 +25,8 @@ Public MainForm As Variant
 Public WIN_Shift As Long
 Public WIN_Active As Long
 Public AWT_LastTrans As Long
+
+Rem ------------------------------- For window
 Rem ====================== Variables for standard colouring ====================
 Public Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
 Rem - Pumps the pipe separated items into Items()

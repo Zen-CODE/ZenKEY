@@ -7,11 +7,14 @@ Module=modPropExtract; Modules\modPropExtract.bas
 Module=modZKCommon; Modules\modZKCommon.bas
 Class=clsZenDictionary; Classes\clsZenDictionary.cls
 Form=Forms\frmMB.frm
+Module=modFileBrowse; Modules\modFileBrowse.bas
+Module=modWindows; Modules\modWindows.bas
+Module=modDevice; Modules\modDevice.bas
 Startup="Sub Main"
 HelpFile=""
 Title="ZenKey"s"
 ExeName32="ZenKP.exe"
-Path32="C:\Program Files\Microsoft Visual Studio"
+Path32="Z:\ZenKEY"
 Command32="|MenuHandle=35783417|MenuID=1003|Caption=Control break|Class=KEYSTROKES|ShiftKey=Ctrl|Hotkey=186|Action=4>88>4>91>4>92>5>91>3>|"
 Name="ZenKP"
 HelpContextID="0"
