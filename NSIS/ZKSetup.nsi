@@ -22,7 +22,7 @@ RequestExecutionLevel admin
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP "ZenKEY.bmp" ; optional
 !define MUI_WELCOMEFINISHPAGE_BITMAP "ZenKEY Cross.bmp"
-!define MUI_WELCOMEPAGE_TITLE  "Welcome to the ZenKEY 2.5.1 Setup Wizard"
+!define MUI_WELCOMEPAGE_TITLE  "Welcome to the ZenKEY 3.0.0 Setup Wizard"
 
 ;!define MUI_HEADERIMAGE_BITMAP "Z:\Zen\My Documents\ZenCODE\NSIS\Y4_Medium.bmp" ; optional
 !define MUI_ABORTWARNING
@@ -136,7 +136,7 @@ Section "ZenKEY" ZKDescrip
   ;Create uninstaller
   WriteUninstaller "$INSTDIR\Uninstall.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ZenKEY" "DisplayName" "ZenKEY"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ZenKEY" "DisplayVersion" "2.5.1"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ZenKEY" "DisplayVersion" "3.0.0"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ZenKEY" "DisplayIcon" "$INSTDIR\ZenKEY.exe,0"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ZenKEY" "UninstallString" "$INSTDIR\Uninstall.exe"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\ZenKEY" "InstallLocation" "$INSTDIR"
