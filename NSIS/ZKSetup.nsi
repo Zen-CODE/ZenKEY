@@ -84,46 +84,39 @@ Section "ZenKEY" ZKDescrip
   RegDLL $SYSDIR\msvbvm60.dll
   
   # Executables + Manifests
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenKEY.exe"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenKEY.exe.manifest"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenDim.exe"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenKP.exe"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenWiz.exe"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenWiz.exe.manifest"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZKConfig.exe"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZKConfig.exe.manifest"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\ZenKEY.ico"
-  
-  # RichClient libraries
-  #File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\cairo2_engine.dll"
-  #File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\dhcairo.dll"
-  #File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\dhRichClient3.dll"
-  #File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\DirectCOM.dll"
-  #File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\sqlite36_engine.dll"
+  File "Z:\ZenKEY\ZenKEY.exe"
+  File "Z:\ZenKEY\ZenKEY.exe.manifest"
+  File "Z:\ZenKEY\ZenDim.exe"
+  File "Z:\ZenKEY\ZenKP.exe"
+  File "Z:\ZenKEY\ZenWiz.exe"
+  File "Z:\ZenKEY\ZenWiz.exe.manifest"
+  File "Z:\ZenKEY\ZKConfig.exe"
+  File "Z:\ZenKEY\ZKConfig.exe.manifest"
+  File "Z:\ZenKEY\ZenKEY.ico"
   
   # INI Files
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Actions.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Default_Complete.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Default_Complete7.ini"
+  File "Z:\ZenKEY\Actions.ini"
+  File "Z:\ZenKEY\Default_Complete.ini"
+  File "Z:\ZenKEY\Default_Complete7.ini"
   IfFileExists $INSTDIR\ZenKEY.ini +2 0
-	File "/oname=ZenKEY.ini" "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Default_Complete.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Default.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\DTMMenu.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Search.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\SetList.ini"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\SetDef.ini"
+	File "/oname=ZenKEY.ini" "Z:\ZenKEY\Default_Complete.ini"
+  File "Z:\ZenKEY\Default.ini"
+  File "Z:\ZenKEY\DTMMenu.ini"
+  File "Z:\ZenKEY\Search.ini"
+  File "Z:\ZenKEY\SetList.ini"
+  File "Z:\ZenKEY\SetDef.ini"
   IfFileExists $INSTDIR\Settings.ini +2 0
-	File "/oname=Settings.ini" "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\SetDef.ini"
+	File "/oname=Settings.ini" "Z:\ZenKEY\SetDef.ini"
   
   # Subfolders
-  File /r "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Help"
-  File /r "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Quotes"
-  File /r "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Skins"
+  File /r "Z:\ZenKEY\Help"
+  File /r "Z:\ZenKEY\Quotes"
+  File /r "Z:\ZenKEY\Skins"
   CreateDirectory $INSTDIR\Icons
   
   # Other files
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Show Desktop.scf"
-  File "Z:\Zen\My Documents\ZenCODE\ZenKEY\ZenKEY\Document.rtf"
+  File "Z:\ZenKEY\Show Desktop.scf"
+  File "Z:\ZenKEY\Document.rtf"
   
   ; Save and implement install options
   WriteRegStr HKLM "Software\ZenCODE\ZenKEY" "ZKPath" $INSTDIR  
