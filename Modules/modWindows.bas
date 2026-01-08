@@ -237,13 +237,14 @@ Public Function RecordAll(ByVal hwnd As Long, ByVal lParam As Long) As Boolean
     RecordAll = True
 
 End Function
-Public Function SendToZenKEY(ByVal prop As String) As Boolean
+Public Function SendToZenKEY(ByVal Prop As String) As Boolean
 Dim lngHWnd As Long
+Dim Registry As New clsRegistry
 
     lngHWnd = Val(Registry.GetRegistry(HKCU, "SOFTWARE\ZenCODE\ZenKEY", "WindowHandle"))
     If lngHWnd > 0 Then
         If IsWindow(lngHWnd) Then
-            Call Registry.SetRegistry(HKCU, "SOFTWARE\ZenCODE\ZenKEY", "Action", prop)
+            Call Registry.SetRegistry(HKCU, "SOFTWARE\ZenCODE\ZenKEY", "Action", Prop)
             Rem - Now notify the running ZenKEY of the command
             Call PostMessage(lngHWnd, WIN_ZKAction, 0, 0)
             SendToZenKEY = True

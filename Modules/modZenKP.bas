@@ -21,7 +21,10 @@ End Type
 Public Declare Function GetTickCount& Lib "kernel32" ()
 Public Declare Function PostMessage Lib "user32" Alias "PostMessageA" (ByVal hwnd As Long, ByVal wMsg As Long, ByVal wParam As Long, ByVal lParam As Long) As Long
 Public Declare Function RegisterWindowMessage Lib "user32" Alias "RegisterWindowMessageA" (ByVal lpString As String) As Long
-
+Public MainForm As Variant
+Public WIN_Shift As Long
+Public WIN_Active As Long
+Public AWT_LastTrans As Long
 Rem ====================== Variables for standard colouring ====================
 Public Function Extract(ByVal Sentance As String, ByVal AfterNthSep As Long, ByVal Separator As String) As String
 Rem - Pumps the pipe separated items into Items()
@@ -37,25 +40,25 @@ Dim k As Integer, intEnd As Integer
         intEnd = InStr(Sentance, Separator)
     Next k
     intEnd = InStr(Sentance, Separator)
-    If intEnd > 0 Then Extract = Left$(Sentance, intEnd - 1) Else Extract = Sentance
+    If intEnd > 0 Then Extract = left$(Sentance, intEnd - 1) Else Extract = Sentance
 
 End Function
-Public Function Prop_Get(ByVal PropName As String, ByVal PropString As String) As String
-Dim lngPos As Long
-Dim lngEnd As Long
-Const strSep As String = "|"
+'Public Function Prop_Get(ByVal PropName As String, ByVal PropString As String) As String
+'Dim lngPos As Long
+'Dim lngEnd As Long
+'Const strSep As String = "|"'
 
-
-    lngPos = InStr(1, PropString, strSep & PropName & "=", vbTextCompare)
-    If lngPos > 0 Then
-        lngEnd = InStr(Mid$(PropString, lngPos + 1), strSep)
-        If lngEnd = 0 Then lngEnd = 2 ^ 15
-        Prop_Get = Mid$(PropString, lngPos + 2 + Len(PropName), lngEnd - Len(PropName) - 2)
-    Else
-        Prop_Get = vbNullString
-    End If
+'
+ '   lngPos = InStr(1, PropString, strSep & PropName & "=", vbTextCompare)
+'    If lngPos > 0 Then
+'        lngEnd = InStr(Mid$(PropString, lngPos + 1), strSep)
+'        If lngEnd = 0 Then lngEnd = 2 ^ 15
+'        Prop_Get = Mid$(PropString, lngPos + 2 + Len(PropName), lngEnd - Len(PropName) - 2)
+'    Else
+'        Prop_Get = vbNullString
+'    End If
     
-End Function
+'End Function
  
 
 Private Sub WaitForRelease(ByVal KeyValue As Long)

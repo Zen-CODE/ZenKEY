@@ -985,7 +985,7 @@ Dim lngH As Long
         End If
     
         Rem - Update the icons
-        Call Icon_UpdateAll
+        ' Call Icon_UpdateAll
         Rem - Show the desktop map?
         If DTM_Enabled Then
             If ZK_DTM.Visible Then

@@ -12,7 +12,7 @@ Attribute VB_Creatable = True
 Attribute VB_PredeclaredId = False
 Attribute VB_Exposed = False
 Option Explicit
-Private dic As cSortedDictionary
+Private dic As Dictionary
 Public Function FromINI(ByVal FileName As String) As Boolean
 Rem - Loads a ini file into a RichClient dictionary
 Rem - A ini file comprises lines of two string separated by an equals sign. The left side is the key, the right side the value.
@@ -60,16 +60,16 @@ Public Sub ToINI(ByRef FileName As String)
 End Sub
 
 
-Public Sub FromProp(ByRef prop As String)
+Public Sub FromProp(ByRef Prop As String)
 Dim k As Long
 Dim items() As String, intPos As Integer
 
-    items = Split(prop, "|")
+    items = Split(Prop, "|")
     'Move backards, so we preserve the ZenKEY behaviour of using the first occurence
     For k = UBound(items) To 0 Step -1 ' Split using pipes
         intPos = InStr(items(k), "=")
         If intPos > 0 Then 'Has a key/value pair
-            Me(left(items(k), intPos - 1)) = Mid(items(k), intPos + 1) ' Use the zen Item prop to handle removal
+            Me(Left(items(k), intPos - 1)) = Mid(items(k), intPos + 1) ' Use the zen Item prop to handle removal
         End If
     Next k
 

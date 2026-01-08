@@ -349,6 +349,8 @@ End Function
 
 Public Sub Init_ZK()
 Dim strSavePath As String
+Dim Registry As New clsRegistry
+    
 
     Rem - Okay, initialize the storage path
     Select Case Registry.GetRegistry(HKLM, "Software\ZenCODE\ZenKEY", "UserPath")

@@ -66,7 +66,7 @@ Const COLOR_WINDOW = 5 'Windows background
     End If
 
 End Sub
-Public Sub DoAction(ByRef prop As clsZenDictionary)
+Public Sub DoAction(ByRef Prop As clsZenDictionary)
 Dim lngHWnd As Long
 Const SW_MAXIMIZE = 3
 Const SW_MINIMIZE = 6
@@ -74,7 +74,7 @@ Const SW_RESTORE = 9
 Dim booUndo As Boolean
 Dim Action As String
 
-    Action = prop("Action")
+    Action = Prop("Action")
     If p_UnLoggedAct(Action) Then Exit Sub ' Exit if the action was an 'Undo'
     If Not booMulti Then
         If colSelected.Count > 0 Then
@@ -85,11 +85,11 @@ Dim Action As String
                 Dim k As Long
                 booMulti = True
                 For k = colSelected.Count To 1 Step -1
-                    prop("HWnd") = colSelected.item(k)
-                    Call DoAction(prop)
+                    Prop("HWnd") = colSelected.Item(k)
+                    Call DoAction(Prop)
                     Rem - In case the windows have been moved, update their new location
                 Next k
-                prop("Hwnd") = vbNullString ' Prevent later usage
+                Prop("Hwnd") = vbNullString ' Prevent later usage
                 booMulti = False
                 Exit Sub
             End If
@@ -128,7 +128,7 @@ Dim Action As String
             Rem - ResoreMe is send by the click on the system tray icon. It sets the 'FormIndex' property in the string
             If ST_Count > 0 Then
                 Dim lngIndex As Long
-                If InStr(prop, "FormIndex") > 0 Then lngIndex = CLng(prop("FormIndex")) Else lngIndex = ST_Count - 1
+                If InStr(Prop, "FormIndex") > 0 Then lngIndex = CLng(Prop("FormIndex")) Else lngIndex = ST_Count - 1
                 lngHWnd = p_FromTray(lngIndex)
             Else
                 Call ZenMB("There are no more ZenKEY items in the system tray.")
@@ -153,7 +153,7 @@ Dim Action As String
                 lngHWnd = 0
             End If
         Case Else
-            lngHWnd = Val(prop("Hwnd"))
+            lngHWnd = Val(Prop("Hwnd"))
             If lngHWnd = 0 Then lngHWnd = GetWindowToUse
             If lngHWnd <> 0 Then
                 Call GetWindowPlacement(lngHWnd, History(HistCurrent).LastWinPlc)
@@ -263,7 +263,7 @@ Dim Action As String
                         If InStr(Action, "SETTRANSPARENCY") > 0 Then
                             Call SetTrans(lngHWnd, Val(Mid(Action, 17)))
                         Else
-                            lngHWnd = ResizeWin(prop, lngHWnd)
+                            lngHWnd = ResizeWin(Prop, lngHWnd)
                         End If
                 End Select
                 Rem - For when the Exe is launched/brought to front, remove any icons from tray
@@ -281,13 +281,13 @@ End Sub
 
 
 
-Public Function ResizeWin(ByRef prop As clsZenDictionary, ByVal lngWin As Long) As Long
+Public Function ResizeWin(ByRef Prop As clsZenDictionary, ByVal lngWin As Long) As Long
 Dim strMessage As String
 Dim RecTan As RECT
 Const MIN = 50
 Dim strAction As String
         
-    strAction = prop("Action")
+    strAction = Prop("Action")
 
     Rem - Ensure the window is displayed normally
     If IsIconic(lngWin) Or IsZoomed(lngWin) Then Call ShowWindow(lngWin, SW_NORMAL)
@@ -323,10 +323,10 @@ Dim strAction As String
         
             Select Case strAction
                 Case "PLACERECT"
-                    .left = Val(prop("Left"))
-                    .Right = Val(prop("Right"))
-                    .Top = Val(prop("Top"))
-                    .Bottom = Val(prop("Bottom"))
+                    .left = Val(Prop("Left"))
+                    .Right = Val(Prop("Right"))
+                    .Top = Val(Prop("Top"))
+                    .Bottom = Val(Prop("Bottom"))
                 Case "SHRINK"
                     If ((.Bottom - .Top) < 2 * WIN_Shift + 1) Or ((4 / 3) * (.Right - .left) < 2 * WIN_Shift + 1) Then
                         strMessage = "Sorry, but this window is too small to shrink any further"
@@ -508,16 +508,18 @@ Dim strAction As String
                         .Top = 0.5 * (rctDesktop.Bottom + rctDesktop.Top)
                         .Bottom = rctDesktop.Bottom
                     Case Else
-                        strMessage = "Not yet implemented! - " & prop("Action")
+                        strMessage = "Not yet implemented! - " & Prop("Action")
                 End Select
             End Select
-            If Len(strMessage) = 0 Then
-                Call PlaceWindow(lngWin, RecTan)
-                ResizeWin = lngWin
-            End If
+            #If ZKCONFIG <> 1 Then
+                If Len(strMessage) = 0 Then
+                    Call PlaceWindow(lngWin, RecTan)
+                    ResizeWin = lngWin
+                End If
+            #End If
         End With
     End If
-    If prop("SILENT") <> "Y" Then
+    If Prop("SILENT") <> "Y" Then
         If Len(strMessage) > 0 Then Call ZenMB(strMessage)
     End If
 
@@ -549,21 +551,22 @@ Private Sub Class_Initialize()
     
 End Sub
 
-
 Private Sub p_ToTray(ByVal hwnd As Long)
-Dim it As frmSystray
-
-    Set it = New frmSystray
-    With it
-        .OwnerForm = 0 ' Initilaise
-        .OwnerForm = hwnd
-        .SendToTray
-    End With
-
+#If ZKCONFIG <> 1 Then
+    Dim it As frmSystray
+    
+        Set it = New frmSystray
+        With it
+            .OwnerForm = 0 ' Initilaise
+            .OwnerForm = hwnd
+            .SendToTray
+        End With
+#End If
 End Sub
 
 Private Function p_FromTray(ByVal lngIndex As Long) As Long
 Rem - Returns the handle to the window being restored
+#If ZKCONFIG <> 1 Then
 Dim it As frmSystray
 
     If lngIndex > -1 Then
@@ -575,6 +578,7 @@ Dim it As frmSystray
             If 0 = IsWindow(p_FromTray) Then p_FromTray = 0
         End If
     End If
+#End If
 
 End Function
 
@@ -659,7 +663,7 @@ Dim k As Long
             If WindowIsUsable(lngHWnd) Then
                 Dim booFound As Boolean
                 For k = colSelected.Count To 1 Step -1
-                    If lngHWnd = colSelected.item(k) Then
+                    If lngHWnd = colSelected.Item(k) Then
                         Rem - The window is already in the selected list.
                         If Action = "Toggle" Then Call colSelected.Remove(k)
                         booFound = True
@@ -669,15 +673,16 @@ Dim k As Long
                 If Not booFound Then Call colSelected.Add(lngHWnd)
             End If
             
-        Case "Clear"
-            Call dhc_RemoveAll(colSelected)
-        Case "Remove"
-            Call dhc_Remove(colSelected, lngHWnd)
-        Case "Purge"
-            For k = colSelected.Count To 1 Step -1
-                If IsWindow(colSelected.item(k)) = 0 Then Call colSelected.Remove(k)
-            Next k
-        
+        #If ZKCONFIG <> 1 Then
+            Case "Clear"
+                Call dhc_RemoveAll(colSelected)
+            Case "Remove"
+                Call dhc_Remove(colSelected, lngHWnd)
+            Case "Purge"
+                For k = colSelected.Count To 1 Step -1
+                    If IsWindow(colSelected.Item(k)) = 0 Then Call colSelected.Remove(k)
+                Next k
+        #End If
     End Select
     
 End Sub
@@ -785,7 +790,7 @@ Dim k As Long, lngTemp As Long
     If colSelected.Count < 2 Then
         Call ZenMB("More than one window must be selected to perform alignment. Please create a window selection by using the Desktop map or by using window selection actions.")
     Else
-        lngHWnd = colSelected.item(1)
+        lngHWnd = colSelected.Item(1)
         If GetWindowRect(lngHWnd, rctRect) <> 0 Then
             lngMax = colSelected.Count
             booMulti = True
@@ -800,7 +805,7 @@ Dim k As Long, lngTemp As Long
             
             Rem - Now alignm the other windows
             For k = 2 To lngMax
-                lngHWnd = colSelected.item(k)
+                lngHWnd = colSelected.Item(k)
                 If GetWindowRect(lngHWnd, rctRect) <> 0 Then
                     With rctRect
                         Select Case strAction
